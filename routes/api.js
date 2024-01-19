@@ -21,9 +21,9 @@ router.put("/patients/:id", PatientController.update); // Edit resource
 router.delete("/patients/:id", PatientController.destroy); // Delete resource
 router.get("/patients/:id", PatientController.show); // Get One Resource
 router.get("/patients/search/:name", PatientController.search); // Search Resource by name
-router.get("/patients/search/positive", PatientController.positive); // Get Positive Resource
-router.get("/patients/search/recovered", PatientController.recovered); // Get Recovered Resource
-router.get("/patients/search/dead", PatientController.dead); // Get Dead Resource
+router.get("/patients/status/:status", PatientController.positive); // Get Positive Resource
+router.get("/patients/status/:status", PatientController.recovered); // Get Recovered Resource
+router.get("/patients/status/:status", PatientController.dead); // Get Dead Resource
 
 // export router
 module.exports = router;
