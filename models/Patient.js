@@ -22,7 +22,7 @@ class Patient {
 
   // membuat method static create
   static async create(data) {
-    // in_date_at = new Date();
+    data.in_date_at = new Date(); // Menambahkan tanggal in_date_at
     const id = await new Promise((resolve, reject) => {
       const sql = "INSERT INTO patients SET ?";
       db.query(sql, data, (err, results) => {
@@ -48,7 +48,7 @@ class Patient {
 
   // mengupdate data patient
   static async update(data, id) {
-    // out_date_at = new Date();
+    data.out_date_at = new Date();
     await new Promise((resolve, reject) => {
       const sql = "UPDATE patients SET ? WHERE id = ?";
       db.query(sql, [data, id], (err, results) => {
@@ -74,6 +74,17 @@ class Patient {
     return new Promise((resolve, reject) => {
       const sql = "SELECT * from patients WHERE name = ?";
       db.query(sql, name, (err, results) => {
+        // destructure object results
+        const patient = results;
+        resolve(patient);
+      });
+    });
+  }
+
+  static total(status) {
+    return new Promise((resolve, reject) => {
+      const sql = "SELECT COUNT(*) AS total FROM patients where status = ?";
+      db.query(sql, status, (err, results) => {
         // destructure object results
         const patient = results;
         resolve(patient);
