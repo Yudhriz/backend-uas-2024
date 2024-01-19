@@ -1,5 +1,5 @@
 // import PatientController
-const PatientController = require("../controllers/patientController");
+const PatientController = require("../controllers/PatientController");
 
 // import express
 const express = require("express");
@@ -21,9 +21,9 @@ router.put("/patients/:id", PatientController.update); // Edit resource
 router.delete("/patients/:id", PatientController.destroy); // Delete resource
 router.get("/patients/:id", PatientController.show); // Get One Resource
 router.get("/patients/search/:name", PatientController.search); // Search Resource by name
-router.get("/patients/status/:status", PatientController.positive); // Get Positive Resource
-router.get("/patients/status/:status", PatientController.recovered); // Get Recovered Resource
-router.get("/patients/status/:status", PatientController.dead); // Get Dead Resource
+router.get("/patients/status/positive", PatientController.positive); // Get Positive Resource
+router.get("/patients/status/recovered", PatientController.recovered); // Get Recovered Resource
+router.get("/patients/status/dead", PatientController.dead); // Get Dead Resource
 
 // export router
 module.exports = router;
