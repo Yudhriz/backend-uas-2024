@@ -154,22 +154,24 @@ class PatientController {
     }
   }
 
-  // Get Positive
+  // Get Positive Resource
   async positive(req, res) {
-    const { status } = req.params;
-    const patients = await Patient.findByStatus(status);
+    const status = "positive";
+    const patient = await Patient.findByStatus(status);
+    const total = await Patient.total(status);
 
-    if (patients) {
+    if (patient) {
       const data = {
-        message: `Menampilkan patient yang positive`,
-        data: patients,
+        message: `Menampilkan patient yang ${status}`,
+        total: total,
+        data: patient,
       };
 
       // The reqeust succeeded
       return res.status(200).json(data);
     } else {
       const data = {
-        message: `Data patient yang positve tidak ditemukan`,
+        message: `Data patient yang ${status} tidak ditemukan`,
       };
 
       // Resource not found
@@ -177,13 +179,16 @@ class PatientController {
     }
   }
 
+  // Get Recovered Resource
   async recovered(req, res) {
-    const { status } = req.params;
-    const patients = await Patient.findByStatus(status);
+    const status = "recovered";
+    const patient = await Patient.findByStatus(status);
+    const total = await Patient.total(status);
 
-    if (patient.length > 0) {
+    if (patient) {
       const data = {
         message: `Menampilkan patient yang sembuh`,
+        total: total,
         data: patient,
       };
 
@@ -199,13 +204,16 @@ class PatientController {
     }
   }
 
+  // Get Dead Resource
   async dead(req, res) {
-    const { status } = req.params;
-    const patients = await Patient.findByStatus(status);
+    const status = "dead";
+    const patient = await Patient.findByStatus(status);
+    const total = await Patient.total(status);
 
-    if (patient.length > 0) {
+    if (patient) {
       const data = {
         message: `Menampilkan patient yang meninggal`,
+        total: total,
         data: patient,
       };
 
